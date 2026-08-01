@@ -68,29 +68,28 @@ spring:
             - id: product-service-subservice
               uri: http://localhost:8082
               predicates:
-                  - Path=/api/v1/subservice/**
+                - Path=/api/v1/subservice/**
 
             - id: product-service-tier
               uri: http://localhost:8082
               predicates:
                 - Path=/api/v1/tier/**
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8081
 management:
   endpoints:
     web:
       exposure:
         include: gateway,health
-
-logging:
-  level:
-    org.springframework.security: TRACE
-    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.web.servlet.function: TRACE
-    org.springframework.web.servlet.DispatcherServlet: TRACE
-    org.springframework.web: DEBUG
+harmoni:
+  auth:
+    encryption:
+      password: harmoni.pos
+      salt: 8ec37ce22d112cb941de84a3c79148cc4163de8fae365a2bb620ef029c9fe9e77f0a1e901f9b8c35037086a6674220c592a31b18a6d910a8db9ef17cffd45cbca4ee08a3ee6895ddf4dec7098cfbec75140ba5604491474fd96617e624be0cccbc7e005e06f0e7e846a0ae9333d7c5e0095d7e2202a14fbad01f044594c51e6b87ae2cf77c2a3bfc100ff98a1c4aa1958e9717a3f541c7c48301b62fdf339163ef0325319d876b806d528041b51d096b93534061b1b21809fa8c6cefda7b9ae9909e55d5efcb940dec2fde08c727502f4cb86d411a853629b7c4bea0b2ca36d53d06b1455fd7fd68ee59f65df6f2ebe88fe3f3af6c2514372ed97024534a7332
+    jwt:
+      secret: ${harmoni.auth.encryption.salt}
+  gateway:
+    rate-limit:
+      max-requests: 100
+      window-seconds: 60
+    logging:
+      max-body-chars: 4096

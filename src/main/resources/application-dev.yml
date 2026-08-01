@@ -1,0 +1,11 @@
+# Local development overrides. Activate with -Dspring-boot.run.profiles=dev.
+# Keep production logs quiet — only turn this on when debugging gateway/security behaviour.
+
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.servlet.function: TRACE
+    org.springframework.web.servlet.DispatcherServlet: TRACE
+    org.springframework.web: DEBUG
