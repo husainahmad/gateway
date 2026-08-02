@@ -75,6 +75,26 @@ spring:
               predicates:
                 - Path=/api/v1/tier/**
 
+            - id: order-service-order
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/v1/order/**
+
+            - id: order-service-report
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/v1/reports/settlement/**
+
+            - id: order-service-daily-report
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/v1/reports/daily/**
+
+            - id: order-service-sales-report
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/v1/reports/sales/**
+
 management:
   endpoints:
     web:
