@@ -75,6 +75,16 @@ spring:
               predicates:
                 - Path=/api/v1/tier/**
 
+            - id: product-service-promotion
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/v1/promotion/**
+
+            - id: product-service-order-item-discount
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/v1/order-item-discount/**
+
             - id: order-service-order
               uri: http://localhost:8083
               predicates:
